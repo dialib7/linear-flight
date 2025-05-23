@@ -1,0 +1,64 @@
+[gd_scene load_steps=7 format=3 uid="uid://uky1m0cpk6li"]
+
+[ext_resource type="Texture2D" uid="uid://dk4j1mhylel86" path="res://geogebra-export.png" id="1_q7jnb"]
+[ext_resource type="Script" uid="uid://c5y650c2vfmq7" path="res://main.gd" id="1_suvky"]
+[ext_resource type="PackedScene" uid="uid://ds5yoalf3w05k" path="res://Szene/Flugzeug.tscn" id="2_8fgnc"]
+[ext_resource type="PackedScene" uid="uid://3ey30tusemw0" path="res://Szene/Gitter.tscn" id="4_ivh1u"]
+
+[sub_resource type="SystemFont" id="SystemFont_suvky"]
+
+[sub_resource type="LabelSettings" id="LabelSettings_suvky"]
+font = SubResource("SystemFont_suvky")
+font_color = Color(0.0605303, 0.0605303, 0.0605303, 1)
+outline_size = 2
+outline_color = Color(1.44392e-07, 0.255807, 0.255827, 1)
+
+[node name="Node2D" type="Node2D" node_paths=PackedStringArray("Flugzeug")]
+script = ExtResource("1_suvky")
+Flugzeug = NodePath("Flugzeug")
+
+[node name="Gitter" parent="." instance=ExtResource("4_ivh1u")]
+visible = false
+modulate = Color(1, 0.109804, 1, 1)
+top_level = true
+position = Vector2(552, 392)
+
+[node name="text" type="Label" parent="."]
+modulate = Color(1, 1, 0.0705882, 1)
+self_modulate = Color(1, 0.176471, 1, 1)
+top_level = true
+offset_left = 520.0
+offset_top = 40.0
+offset_right = 850.0
+offset_bottom = 112.0
+text = "Dies ist ein Test, die Variable hat den Wert:
+"
+label_settings = SubResource("LabelSettings_suvky")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+position = Vector2(566, 328)
+scale = Vector2(0.4, 0.2)
+texture = ExtResource("1_q7jnb")
+
+[node name="Flugzeug" parent="." instance=ExtResource("2_8fgnc")]
+position = Vector2(256, 216)
+
+[node name="Camera2D" type="Camera2D" parent="."]
+position = Vector2(576, 328)
+
+[node name="Control" type="Control" parent="."]
+layout_mode = 3
+anchors_preset = 0
+offset_left = 112.0
+offset_top = 544.0
+offset_right = 1056.0
+offset_bottom = 624.0
+
+[node name="Button" type="Button" parent="Control"]
+layout_mode = 0
+offset_left = 424.0
+offset_top = 48.0
+offset_right = 496.0
+offset_bottom = 80.0
+
+[connection signal="pressed" from="Control/Button" to="." method="_on_button_pressed"]
