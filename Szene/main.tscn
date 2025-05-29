@@ -240,18 +240,18 @@ horizontal_alignment = 2
 
 [node name="CheckButton" type="CheckButton" parent="Control"]
 layout_mode = 0
-offset_left = -56.0
-offset_top = -16.0
-offset_right = -12.0
-offset_bottom = 8.0
+offset_left = 208.0
+offset_top = -8.0
+offset_right = 252.0
+offset_bottom = 16.0
 button_pressed = true
 
 [node name="CheckBoxLabel" type="Label" parent="Control"]
 layout_mode = 0
-offset_left = -8.0
-offset_top = -16.0
-offset_right = 60.0
-offset_bottom = 7.0
+offset_left = 256.0
+offset_top = -8.0
+offset_right = 324.0
+offset_bottom = 15.0
 text = "Hilfslinie"
 
 [node name="Panel" type="Panel" parent="Control"]
@@ -278,9 +278,9 @@ vertical_alignment = 1
 
 [node name="LevelPanel" type="Panel" parent="Control"]
 layout_mode = 0
-offset_left = -50.0
+offset_left = -70.0
 offset_top = -496.0
-offset_right = 50.0
+offset_right = 30.0
 offset_bottom = -246.0
 
 [node name="LevelLabel" type="Label" parent="Control/LevelPanel"]
@@ -292,6 +292,7 @@ offset_bottom = 33.0
 text = "Level"
 
 [node name="ButtonLevel1" type="Button" parent="Control/LevelPanel"]
+layout_mode = 0
 offset_left = 12.0
 offset_top = 40.0
 offset_right = 42.0
@@ -299,6 +300,7 @@ offset_bottom = 71.0
 text = "1"
 
 [node name="ButtonLevel2" type="Button" parent="Control/LevelPanel"]
+layout_mode = 0
 offset_left = 57.0
 offset_top = 40.0
 offset_right = 87.0
@@ -306,6 +308,7 @@ offset_bottom = 71.0
 text = "2"
 
 [node name="ButtonLevel3" type="Button" parent="Control/LevelPanel"]
+layout_mode = 0
 offset_left = 12.0
 offset_top = 88.0
 offset_right = 42.0
@@ -314,11 +317,11 @@ text = "3"
 
 [node name="StartpunktInfo" type="Label" parent="Control"]
 layout_mode = 0
-offset_left = 256.0
+offset_left = 160.0
 offset_top = 64.0
-offset_right = 613.0
+offset_right = 670.0
 offset_bottom = 87.0
-text = "Der Startpunkt muss auf der Funktion liegen!!!"
+text = "Der Startpunkt des Flugzeuges muss auf dem roten Punkt liegen!!!"
 
 [node name="Camera2D" type="Camera2D" parent="."]
 position = Vector2(576, 328)
@@ -348,3 +351,4 @@ horizontal_alignment = 1
 [connection signal="toggled" from="Control/CheckButton" to="." method="_on_check_button_toggled"]
 [connection signal="pressed" from="Control/LevelPanel/ButtonLevel1" to="." method="_on_button_level_1_pressed"]
 [connection signal="pressed" from="Control/LevelPanel/ButtonLevel2" to="." method="_on_button_level_2_pressed"]
+[connection signal="pressed" from="Control/LevelPanel/ButtonLevel3" to="." method="_on_button_level_3_pressed"]

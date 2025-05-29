@@ -4,7 +4,7 @@ extends Node2D
 @export var KoordinatenSystem : Node2D
 
 var koordinaten : Label
-var startpunkt : Label
+var ersterpunkt : Label
 var endpunkt : Label
 var Formel : Label
 var ende : Label
@@ -21,6 +21,7 @@ var b : int = 0
 var parameterzahl : int = 2
 var currentLevel : int = 0
 var FlugzeugStartPosition := Vector2(300,200)
+var AndererErsterPunkt := Vector2(0,0)
 var Aufgabe1Text : String
 var skalierung := 100
 
@@ -42,21 +43,43 @@ func _initLevel(level: int):
 	Formel.label_settings.outline_size = 0
 	get_node("Control/Label").visible = true
 	get_node("Control/LineEdit").visible = true
+
 	start = false
 	state = states.START
 	get_node("Control/Button").text = "Start"
-	
+
 	var aufgabenstellung = get_node("Control/Panel")
 	aufgabenstellung.global_position.x = 800
+	
+	var style_hightlight = StyleBoxFlat.new()
+	var style = StyleBoxFlat.new()
+	style_hightlight.set_border_width_all(2)
+	style.set_border_width_all(2)
+	style_hightlight.bg_color = Color(0.2, 0.2, 0.2)  # Dunkelgrauer Hintergrund
+	style.bg_color = Color(0.2, 0.2, 0.2)  # Dunkelgrauer Hintergrund
+	style_hightlight.border_color = Color(1, 0, 0) 
+	style.border_color = Color.GRAY
+	
+	for i in range(0,3):
+		if i == level:
+			get_node("Control/LevelPanel/ButtonLevel" + str(level+1)).add_theme_stylebox_override("normal", style_hightlight)
+		else:
+			get_node("Control/LevelPanel/ButtonLevel" + str(i+1)).add_theme_stylebox_override("normal", style)
+	
+	# zweite Wolke verstecken
+	var Wolke2 = get_node("Wolke2")
+	Wolke2.position = Vector2(2600.0,2320.0)
+	Wolke2.visible = false
 	
 	if level == 0:
 		#Flugzeugposition
 		FlugzeugStartPosition = Vector2(300,200)
+		AndererErsterPunkt = Vector2(0,0)
 		#Flughafenposition
 		get_node("Airport").position = Vector2(4*skalierung+ursprung.position.x,-(0-ursprung.position.y))
 		
 		#Hindernisse 
-		get_node("Wolke").position = Vector2(592.0,184.0)
+		get_node("Wolke").position = Vector2(600.0,180.0)
 		get_node("Stadt").position = Vector2(440.0,384.0)
 		get_node("Control/Panel/Aufgabenstellung1").text = Aufgabe1Text
 		
@@ -68,7 +91,8 @@ func _initLevel(level: int):
 		coeff[1] = 0.0
 		
 	elif level == 1:
-		FlugzeugStartPosition = Vector2(-1*skalierung+ursprung.position.x,(1*skalierung+ursprung.position.y))
+		FlugzeugStartPosition = Vector2(_xtoPixel(-1),_ytoPixel(-1))
+		AndererErsterPunkt = Vector2(0,0)
 		get_node("Airport").position = Vector2(_xtoPixel(3.5),_ytoPixel(3))
 		get_node("Wolke").position = Vector2(342.0,184.0)
 		get_node("Stadt").position = Vector2(440.0,434.0)
@@ -83,15 +107,32 @@ func _initLevel(level: int):
 		coeff[0] = 0.0
 		coeff[1] = 1.0
 		
-		var Wolke2 = get_node("Wolke2")
 		Wolke2.position = Vector2(600.0,320.0)
 		Wolke2.visible = true
 		
 		Formel.text = "Aktuelle Formel:\nf(x) = " + str(coeff[1]) + "x + " + str(coeff[0])
 		
 	elif level == 2:
-		get_node("Control/LineEdit").text = str(0.0)
-		get_node("Control/LineEdit2").text = str(0.0)
+		FlugzeugStartPosition = Vector2(_xtoPixel(-1),_ytoPixel(1))
+		AndererErsterPunkt = Vector2(_xtoPixel(0),_ytoPixel(1))
+		print("FlugzeugStartPosition.x: " + str(FlugzeugStartPosition.x))
+		print("FlugzeugStartPosition.y: " + str(FlugzeugStartPosition.y))
+		get_node("Airport").position = Vector2(_xtoPixel(5),_ytoPixel(-0.5))
+		get_node("Wolke").position = Vector2(_xtoPixel(3),_ytoPixel(2))
+		get_node("Stadt").position = Vector2(_xtoPixel(0),_ytoPixel(-0.5))
+		
+		var Aufgabe = get_node("Control/Panel/Aufgabenstellung1")
+		Aufgabe.text = "[font_size=20][b]Aufgabenstellung 3:[/b][/font_size]\n\n"
+		Aufgabe.text += "[font_size=14]Startpunkt FZ(-1|-1)\nEndpunkt FZ(4|3)\n\n" 
+		Aufgabe.text += "Suche die passenden Parameter für a0 (y-Achsenabschnitt) und a1 (Steigung m) einer linearen Funktion mit dem Prototypen:\n\n" 
+		Aufgabe.text += "[font_size=24]f(x) = a1x + a0[/font_size]"
+		
+		parameterzahl = 3
+		coeff[0] = 1.0
+		coeff[1] = 0.0
+		coeff[2] = -2.0
+		
+		Formel.text = "Aktuelle Formel:\nf(x) = " + str(coeff[1]) + "x² + " + str(coeff[1]) + "x + " + str(coeff[0])
 		
 	get_node("Control/LineEdit").text = str(coeff[0])
 	get_node("Control/LineEdit2").text = str(coeff[1])
@@ -103,13 +144,14 @@ func _initLevel(level: int):
 	for i in range(1, parameterzahl):
 		get_node("Control/Label" + str(i+1)).visible = true
 		get_node("Control/LineEdit" + str(i+1)).visible = true
+		get_node("Control/LineEdit" + str(i+1)).text = str(coeff[i])
 
 func _ready(): 
 	Formel = get_node("Control/Formel")
 	Aufgabe1Text = get_node("Control/Panel/Aufgabenstellung1").text
 	
 	startButton = $Control/Button
-	startpunkt = $StartPunkt
+	ersterpunkt = $StartPunkt
 	endpunkt = $Airport/Endpunkt
 	airport = $Airport
 	koordinaten = $Flugzeug/FlugzeugPunkt
@@ -121,12 +163,18 @@ func _ready():
 	_initLevel(currentLevel)
 	
 func _draw() -> void:
-	draw_circle(Vector2(Flugzeug.position.x,Flugzeug.position.y), 10, Color.RED, true)
+	if (AndererErsterPunkt.x != 0):
+		ersterpunkt.text = "EP(" + str(_pixelToX(AndererErsterPunkt.x)) + "|" + str(_pixelToY(AndererErsterPunkt.y)) + ")"
+		ersterpunkt.position = Vector2(AndererErsterPunkt.x-32,AndererErsterPunkt.y+20)
+		draw_circle(Vector2(AndererErsterPunkt.x,AndererErsterPunkt.y), 10, Color.RED, true)
+	else:
+		var flugzeugX = _pixelToX(Flugzeug.position.x)
+		var flugzeugY = _pixelToY(Flugzeug.position.y)
+		ersterpunkt.text = "SP(" + str(flugzeugX) + "|" + str(flugzeugY).substr(0,4) + ")"
+		ersterpunkt.position = Vector2(Flugzeug.position.x-32,Flugzeug.position.y+20)
+		draw_circle(Vector2(Flugzeug.position.x,Flugzeug.position.y), 10, Color.RED, true)
+
 	draw_circle(Vector2(airport.position.x,airport.position.y), 10, Color.RED, true)
-	var flugzeugX = (Flugzeug.position.x-ursprung.position.x)/skalierung
-	var flugzeugY = -(Flugzeug.position.y-ursprung.position.y)/skalierung
-	startpunkt.text = "FZ(" + str(flugzeugX) + "|" + str(flugzeugY).substr(0,4) + ")"
-	startpunkt.position = Vector2(Flugzeug.position.x-32,Flugzeug.position.y-40)
 	var flughafenX = (airport.position.x-ursprung.position.x)/skalierung
 	var flughafenY = -(airport.position.y-ursprung.position.y)/skalierung	
 	endpunkt.text = "FH(" + str(flughafenX) + "|" + str(flughafenY).substr(0,4) + ")"
@@ -194,13 +242,13 @@ func _on_button_pressed() -> void:
 		print("Wert von _ytoPixel(_formelberechnen(_pixelToX(FlugzeugStartPosition.x))): " + str(_ytoPixel(_formelberechnen(_pixelToX(FlugzeugStartPosition.x)))))
 		print("Wert von FlugzeugStartPosition.y: " + str(FlugzeugStartPosition.y))
 		# check ob die StartPosition des Flugzeuges mit dem richtigen StartPunkt übereinstimmt
-		if abs(FlugzeugStartPosition.y - _ytoPixel(_formelberechnen(_pixelToX(FlugzeugStartPosition.x)))) < 2:
+		if abs(FlugzeugStartPosition.y - _ytoPixel(_formelberechnen(_pixelToX(FlugzeugStartPosition.x)))) < 2 || AndererErsterPunkt.x != 0:
 			start = true
 			state = states.GO
 			get_node("Control/Button").text = "Stop"
 		else:
 			print("Das geht doch nicht!")
-			timer = 5
+			timer = 3
 			$Control/StartpunktInfo.visible = true
 			var tween = get_tree().create_tween()
 			tween.tween_property(startButton, "modulate", Color(1, 0.5, 0.5), 0.2)
@@ -246,20 +294,23 @@ func _on_check_button_toggled(toggled_on: bool) -> void:
 
 func _on_line_edit_text_changed(new_text: String) -> void:
 	coeff[0] = new_text.to_float()
-	if (Flugzeug.position.x == ursprung.position.x):
-		Flugzeug.position.y = _ytoPixel(coeff[0])#-(coeff[0]*skalierung-ursprung.position.y)
-
+	Flugzeug.position.y = _ytoPixel(_formelberechnen(_pixelToX(Flugzeug.position.x)))
+	
 func _on_line_edit_2_text_changed(new_text: String) -> void:
 	coeff[1] = new_text.to_float()
+	Flugzeug.position.y = _ytoPixel(_formelberechnen(_pixelToX(Flugzeug.position.x)))
 
 func _on_line_edit_3_text_changed(new_text: String) -> void:
-	coeff[1] = new_text.to_float()
+	coeff[2] = new_text.to_float()
+	Flugzeug.position.y = _ytoPixel(_formelberechnen(_pixelToX(Flugzeug.position.x)))
 
 func _on_line_edit_4_text_changed(new_text: String) -> void:
 	coeff[3] = new_text.to_float()
+	Flugzeug.position.y = _ytoPixel(_formelberechnen(_pixelToX(Flugzeug.position.x)))
 
 func _on_line_edit_5_text_changed(new_text: String) -> void:
 	coeff[4] = new_text.to_float()
+	Flugzeug.position.y = _ytoPixel(_formelberechnen(_pixelToX(Flugzeug.position.x)))
 
 func _on_button_level_1_pressed() -> void:
 	currentLevel = 0
@@ -268,10 +319,16 @@ func _on_button_level_1_pressed() -> void:
 func _on_button_level_2_pressed() -> void:
 	currentLevel = 1
 	_initLevel(currentLevel)
+	
+func _on_button_level_3_pressed() -> void:
+	currentLevel = 2
+	_initLevel(currentLevel)
 
 func _formelberechnen(xWert: float) -> float:
 	var yWert = 0
+	print(str(coeff))
 	yWert = coeff[4]*pow(xWert,4) + coeff[3]*pow(xWert,3) + coeff[2]*pow(xWert,2) + coeff[1]*xWert + coeff[0]
+	print("xWert = " + str(xWert) + "; yWert = " + str(yWert))
 	return yWert
 	
 func _xtoPixel(xWert: float) -> int:
