@@ -1,12 +1,21 @@
 [gd_scene load_steps=4 format=3 uid="uid://3ey30tusemw0"]
 
-[ext_resource type="Script" uid="uid://dud0otocvcbon" path="res://line_2d.gd" id="1_mlj4x"]
-
 [sub_resource type="Curve" id="Curve_s4cpc"]
 
 [sub_resource type="Gradient" id="Gradient_mlj4x"]
 offsets = PackedFloat32Array(0, 0.206667, 1)
 colors = PackedColorArray(0, 0, 0, 1, 0.313333, 0.313333, 0.313333, 1, 1, 1, 1, 1)
+
+[sub_resource type="GDScript" id="GDScript_s4cpc"]
+script/source = "extends Line2D
+
+func _ready():
+	clear_points()
+	add_point(Vector2(100, 100))
+	add_point(Vector2(300, 150))
+	width = 4
+	default_color = Color(1, 0, 0)  # Rot
+"
 
 [node name="Gitter" type="CanvasGroup"]
 
@@ -18,4 +27,4 @@ width = 100.0
 width_curve = SubResource("Curve_s4cpc")
 default_color = Color(1, 0.160784, 1, 1)
 gradient = SubResource("Gradient_mlj4x")
-script = ExtResource("1_mlj4x")
+script = SubResource("GDScript_s4cpc")

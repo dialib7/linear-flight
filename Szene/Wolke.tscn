@@ -1,0 +1,13 @@
+[gd_scene load_steps=2 format=3 uid="uid://0x1mdyn0y77b"]
+
+[ext_resource type="Texture2D" uid="uid://dqduy71y115ul" path="res://Bild/wolke.png" id="1_xue54"]
+
+[node name="Wolke" type="Sprite2D"]
+scale = Vector2(0.1, 0.1)
+texture = ExtResource("1_xue54")
+
+[node name="Area2D" type="Area2D" parent="."]
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="Area2D"]
+build_mode = 1
+polygon = PackedVector2Array(880, 552, 448, 1016, -320, 1408, -792, 1072, -928, 552, -1408, 8, -1072, -680, -672, -1040, -120, -1248, 272, -1224, 1040, -776, 1320, -112)

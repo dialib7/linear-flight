@@ -1,0 +1,13 @@
+[gd_scene load_steps=2 format=3 uid="uid://cbqa6xi1vfvuk"]
+
+[ext_resource type="Texture2D" uid="uid://bqwqui58mgum4" path="res://Bild/city.png" id="1_6h5fm"]
+
+[node name="Stadt" type="Node2D"]
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture = ExtResource("1_6h5fm")
+
+[node name="Area2D" type="Area2D" parent="Sprite2D"]
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="Sprite2D/Area2D"]
+polygon = PackedVector2Array(-464, 256, 480, 256, 480, 96, 104, -176, 24, -208, -32, -192, -128, -136, -472, 128)

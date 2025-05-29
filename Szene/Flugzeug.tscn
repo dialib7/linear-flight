@@ -1,11 +1,9 @@
-[gd_scene load_steps=4 format=3 uid="uid://ds5yoalf3w05k"]
+[gd_scene load_steps=3 format=3 uid="uid://ds5yoalf3w05k"]
 
-[ext_resource type="Texture2D" uid="uid://b2k1hwgkmahrx" path="res://flugzeug.png" id="1_a6kfg"]
+[ext_resource type="Texture2D" uid="uid://b2k1hwgkmahrx" path="res://Bild/flugzeug.png" id="1_a6kfg"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_8mb2j"]
-size = Vector2(64, 20)
-
-[sub_resource type="Curve2D" id="Curve2D_a6kfg"]
+size = Vector2(6, 4)
 
 [node name="Flugzeug" type="CharacterBody2D"]
 motion_mode = 1
@@ -16,12 +14,4 @@ texture = ExtResource("1_a6kfg")
 flip_h = true
 
 [node name="FlugzeugShape" type="CollisionShape2D" parent="."]
-position = Vector2(1, 0)
 shape = SubResource("RectangleShape2D_8mb2j")
-
-[node name="Path2D" type="Path2D" parent="."]
-visible = false
-curve = SubResource("Curve2D_a6kfg")
-
-[node name="Line2D" type="Line2D" parent="."]
-visible = false

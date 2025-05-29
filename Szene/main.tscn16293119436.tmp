@@ -1,0 +1,171 @@
+[gd_scene load_steps=14 format=3 uid="uid://uky1m0cpk6li"]
+
+[ext_resource type="Script" uid="uid://c5y650c2vfmq7" path="res://main.gd" id="1_suvky"]
+[ext_resource type="PackedScene" uid="uid://ds5yoalf3w05k" path="res://Szene/Flugzeug.tscn" id="2_8fgnc"]
+[ext_resource type="Texture2D" uid="uid://dqduy71y115ul" path="res://Bild/wolke.png" id="3_fwc4n"]
+[ext_resource type="PackedScene" uid="uid://bpsqtv3xy70vn" path="res://Szene/KoordinatenSystem.tscn" id="4_ivh1u"]
+[ext_resource type="Texture2D" uid="uid://bqwqui58mgum4" path="res://Bild/city.png" id="4_qmnke"]
+[ext_resource type="Texture2D" uid="uid://bia5lf4bnspp8" path="res://Bild/airport.png" id="5_6uq0m"]
+[ext_resource type="Script" uid="uid://cuuwn4cntgyb8" path="res://Skript/airport.gd" id="6_qmnke"]
+
+[sub_resource type="SystemFont" id="SystemFont_suvky"]
+
+[sub_resource type="LabelSettings" id="LabelSettings_suvky"]
+font = SubResource("SystemFont_suvky")
+font_color = Color(0.0605303, 0.0605303, 0.0605303, 1)
+outline_size = 2
+outline_color = Color(1.44392e-07, 0.255807, 0.255827, 1)
+
+[sub_resource type="NoiseTexture2D" id="NoiseTexture2D_suvky"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_suvky"]
+size = Vector2(20, 66)
+
+[sub_resource type="SystemFont" id="SystemFont_ivh1u"]
+
+[sub_resource type="LabelSettings" id="LabelSettings_tm8iy"]
+line_spacing = 1.0
+font = SubResource("SystemFont_ivh1u")
+font_size = 29
+font_color = Color(1, 0.00784314, 1, 1)
+outline_size = 1
+outline_color = Color(0.00351917, 0.00351917, 0.00351917, 1)
+shadow_color = Color(0.051971, 0.051971, 0.051971, 0)
+
+[node name="Node2D" type="Node2D" node_paths=PackedStringArray("Flugzeug", "KoordinatenSystem")]
+script = ExtResource("1_suvky")
+Flugzeug = NodePath("Flugzeug")
+KoordinatenSystem = NodePath("KoordinatenSystem")
+
+[node name="KoordinatenSystem" parent="." instance=ExtResource("4_ivh1u")]
+
+[node name="formel" type="Label" parent="."]
+modulate = Color(1, 1, 0.0705882, 1)
+self_modulate = Color(1, 0.176471, 1, 1)
+top_level = true
+offset_left = 88.0
+offset_top = 592.0
+offset_right = 418.0
+offset_bottom = 664.0
+text = "Dies ist ein Test, die Variable hat den Wert:
+"
+label_settings = SubResource("LabelSettings_suvky")
+
+[node name="Wolke" type="Sprite2D" parent="."]
+position = Vector2(600, 200)
+scale = Vector2(0.0980422, 0.0722307)
+texture = ExtResource("3_fwc4n")
+
+[node name="City" type="Sprite2D" parent="."]
+position = Vector2(400, 400)
+scale = Vector2(0.265153, 0.262231)
+texture = ExtResource("4_qmnke")
+
+[node name="Airport" type="Sprite2D" parent="."]
+position = Vector2(700, 400)
+scale = Vector2(0.0408938, 0.0589528)
+texture = ExtResource("5_6uq0m")
+script = ExtResource("6_qmnke")
+
+[node name="Flugzeug" parent="." instance=ExtResource("2_8fgnc")]
+position = Vector2(300, 200)
+
+[node name="FlugzeugPunkt" type="Label" parent="Flugzeug"]
+modulate = Color(0.0295066, 0.0295066, 0.0295066, 1)
+offset_left = -32.0
+offset_top = -40.0
+offset_right = 40.0
+offset_bottom = 8.0
+
+[node name="Camera2D" type="Camera2D" parent="."]
+position = Vector2(576, 328)
+
+[node name="Control" type="Control" parent="."]
+layout_mode = 3
+anchors_preset = 0
+offset_left = 112.0
+offset_top = 544.0
+offset_right = 1056.0
+offset_bottom = 624.0
+
+[node name="Button" type="Button" parent="Control"]
+layout_mode = 0
+offset_left = 424.0
+offset_top = 48.0
+offset_right = 496.0
+offset_bottom = 80.0
+text = "START"
+
+[node name="LineEdit" type="LineEdit" parent="Control"]
+layout_mode = 0
+offset_left = 848.0
+offset_top = -96.0
+offset_right = 916.563
+offset_bottom = -65.0
+
+[node name="Label" type="Label" parent="Control"]
+layout_mode = 0
+offset_left = 800.0
+offset_top = -88.0
+offset_right = 840.0
+offset_bottom = -65.0
+text = "a ="
+
+[node name="LineEdit2" type="LineEdit" parent="Control"]
+offset_left = 848.0
+offset_top = -48.0
+offset_right = 916.563
+offset_bottom = -17.0
+
+[node name="Label2" type="Label" parent="Control"]
+offset_left = 800.0
+offset_top = -40.0
+offset_right = 840.0
+offset_bottom = -17.0
+text = "b ="
+
+[node name="Fluglinie" type="Line2D" parent="."]
+points = PackedVector2Array(344, 208, 256, 216, 184, 224)
+width = 2.0
+default_color = Color(1, 0.00392157, 1, 1)
+
+[node name="Ursprung" type="Marker2D" parent="."]
+modulate = Color(0.00184107, 0.00184107, 0.00184107, 1)
+position = Vector2(300, 400)
+scale = Vector2(3, 3)
+
+[node name="Felsenfeld" type="Area2D" parent="."]
+visible = false
+position = Vector2(600, 200)
+
+[node name="felsenoptik" type="Sprite2D" parent="Felsenfeld"]
+modulate = Color(0, 0.72549, 1, 1)
+texture_filter = 1
+texture_repeat = 2
+scale = Vector2(0.260507, 0.920362)
+texture = SubResource("NoiseTexture2D_suvky")
+region_enabled = true
+region_rect = Rect2(257, 127.5, 121, 141)
+region_filter_clip_enabled = true
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Felsenfeld"]
+scale = Vector2(1, 2)
+shape = SubResource("RectangleShape2D_suvky")
+
+[node name="Ende" type="Label" parent="."]
+modulate = Color(0.988235, 0, 0, 1)
+offset_left = 680.0
+offset_top = 88.0
+offset_right = 801.0
+offset_bottom = 210.0
+scale = Vector2(2.58797, 1.73775)
+text = "Du hast 
+leider 
+Verloren"
+label_settings = SubResource("LabelSettings_tm8iy")
+horizontal_alignment = 1
+
+[connection signal="pressed" from="Control/Button" to="." method="_on_button_pressed"]
+[connection signal="area_entered" from="Felsenfeld" to="." method="_on_felsenfeld_area_entered"]
+[connection signal="area_shape_entered" from="Felsenfeld" to="." method="_on_felsenfeld_area_shape_entered"]
+[connection signal="body_entered" from="Felsenfeld" to="." method="_on_felsenfeld_body_entered"]
