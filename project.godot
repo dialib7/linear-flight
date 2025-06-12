@@ -15,6 +15,12 @@ run/main_scene="uid://uky1m0cpk6li"
 config/features=PackedStringArray("4.4", "Mobile")
 config/icon="res://icon.svg"
 
+[display]
+
+window/size/viewport_width=1280
+window/size/viewport_height=720
+window/stretch/mode="canvas_items"
+
 [input]
 
 move_up={
@@ -40,4 +46,6 @@ move_left={
 
 [rendering]
 
-renderer/rendering_method="mobile"
+renderer/rendering_method="gl_compatibility"
+renderer/rendering_method.mobile="gl_compatibility"
+environment/defaults/default_clear_color=Color(0.505344, 0.505344, 0.505344, 1)

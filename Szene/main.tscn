@@ -1,4 +1,4 @@
-[gd_scene load_steps=13 format=3 uid="uid://uky1m0cpk6li"]
+[gd_scene load_steps=15 format=3 uid="uid://uky1m0cpk6li"]
 
 [ext_resource type="Script" uid="uid://c5y650c2vfmq7" path="res://main.gd" id="1_suvky"]
 [ext_resource type="PackedScene" uid="uid://ds5yoalf3w05k" path="res://Szene/Flugzeug.tscn" id="2_8fgnc"]
@@ -9,13 +9,19 @@
 [ext_resource type="LabelSettings" uid="uid://tjhn80euu58f" path="res://coeff.tres" id="8_6uq0m"]
 [ext_resource type="PackedScene" uid="uid://cbqa6xi1vfvuk" path="res://Szene/Stadt.tscn" id="8_b4ujm"]
 
+[sub_resource type="LabelSettings" id="LabelSettings_6uq0m"]
+font_size = 20
+
+[sub_resource type="LabelSettings" id="LabelSettings_6pdlh"]
+font_size = 20
+
 [sub_resource type="SystemFont" id="SystemFont_suvky"]
 
 [sub_resource type="LabelSettings" id="LabelSettings_suvky"]
 line_spacing = 5.0
 paragraph_spacing = 5.0
 font = SubResource("SystemFont_suvky")
-font_size = 30
+font_size = 24
 font_color = Color(0.0588235, 0.0588235, 1, 1)
 outline_size = 2
 outline_color = Color(1.44392e-07, 0.255807, 0.255827, 1)
@@ -33,16 +39,17 @@ outline_color = Color(0.00351917, 0.00351917, 0.00351917, 1)
 shadow_color = Color(0.051971, 0.051971, 0.051971, 0)
 
 [node name="Node2D" type="Node2D" node_paths=PackedStringArray("Flugzeug", "KoordinatenSystem")]
+show_behind_parent = true
 script = ExtResource("1_suvky")
 Flugzeug = NodePath("Flugzeug")
 KoordinatenSystem = NodePath("KoordinatenSystem")
 
 [node name="KoordinatenSystem" parent="." instance=ExtResource("4_ivh1u")]
+visible = false
 
 [node name="Ursprung" type="Marker2D" parent="."]
 modulate = Color(0.00184107, 0.00184107, 0.00184107, 1)
-position = Vector2(300, 400)
-scale = Vector2(3, 3)
+position = Vector2(304, 400)
 
 [node name="Wolke" parent="." instance=ExtResource("8_6pdlh")]
 position = Vector2(592, 184)
@@ -86,6 +93,7 @@ offset_right = -1173.59
 offset_bottom = -1189.32
 scale = Vector2(25.2, 16.832)
 text = "Flughafen"
+label_settings = SubResource("LabelSettings_6uq0m")
 horizontal_alignment = 1
 uppercase = true
 
@@ -95,6 +103,7 @@ offset_left = 268.0
 offset_top = 160.0
 offset_right = 340.0
 offset_bottom = 208.0
+label_settings = SubResource("LabelSettings_6pdlh")
 
 [node name="Flugzeug" parent="." instance=ExtResource("2_8fgnc")]
 position = Vector2(300, 200)
@@ -114,17 +123,17 @@ default_color = Color(1, 0.00392157, 1, 1)
 [node name="Control" type="Control" parent="."]
 layout_mode = 3
 anchors_preset = 0
-offset_left = 120.0
-offset_top = 544.0
-offset_right = 1064.0
-offset_bottom = 624.0
+offset_left = 152.0
+offset_top = 600.0
+offset_right = 1168.0
+offset_bottom = 680.0
 
 [node name="Button" type="Button" parent="Control"]
 layout_mode = 0
-offset_left = 360.0
-offset_top = -16.0
-offset_right = 432.0
-offset_bottom = 16.0
+offset_left = -96.0
+offset_top = -8.0
+offset_right = -24.0
+offset_bottom = 24.0
 scale = Vector2(2, 2)
 text = "Hallo!"
 
@@ -134,132 +143,210 @@ self_modulate = Color(1, 0.176471, 1, 1)
 top_level = true
 layout_mode = 0
 offset_left = 680.0
-offset_top = 520.0
-offset_right = 992.0
-offset_bottom = 666.0
+offset_top = 536.0
+offset_right = 1192.0
+offset_bottom = 614.0
 text = "Aktuelle Funktion: 
-a1 * x + a0
 "
 label_settings = SubResource("LabelSettings_suvky")
 horizontal_alignment = 1
 
-[node name="LineEdit" type="LineEdit" parent="Control"]
-visible = false
+[node name="Formelbereich" type="Panel" parent="Control"]
 layout_mode = 0
-offset_left = 936.0
-offset_top = 40.0
-offset_right = 1004.56
-offset_bottom = 71.0
+offset_left = 552.0
+offset_top = -24.0
+offset_right = 1016.0
+offset_bottom = 56.0
 
-[node name="Label" type="Label" parent="Control"]
-visible = false
+[node name="eingabe-a2" type="LineEdit" parent="Control/Formelbereich"]
 layout_mode = 0
-offset_left = 888.0
-offset_top = 44.0
-offset_right = 928.0
-offset_bottom = 67.0
-text = "a0 ="
-label_settings = ExtResource("8_6uq0m")
-horizontal_alignment = 2
+offset_left = 128.0
+offset_top = 32.0
+offset_right = 196.563
+offset_bottom = 63.0
 
-[node name="LineEdit2" type="LineEdit" parent="Control"]
-visible = false
+[node name="label-a2" type="Label" parent="Control/Formelbereich"]
 layout_mode = 0
-offset_left = 936.0
-offset_top = -16.0
-offset_right = 1004.56
-offset_bottom = 15.0
-
-[node name="Label2" type="Label" parent="Control"]
-visible = false
-layout_mode = 0
-offset_left = 888.0
-offset_top = -12.0
-offset_right = 928.0
-offset_bottom = 11.0
-text = "a1 ="
-label_settings = ExtResource("8_6uq0m")
-horizontal_alignment = 2
-
-[node name="LineEdit3" type="LineEdit" parent="Control"]
-visible = false
-layout_mode = 0
-offset_left = 936.0
-offset_top = -72.0
-offset_right = 1004.56
-offset_bottom = -41.0
-
-[node name="Label3" type="Label" parent="Control"]
-visible = false
-layout_mode = 0
-offset_left = 888.0
-offset_top = -68.0
-offset_right = 928.0
-offset_bottom = -45.0
+offset_left = 144.0
+offset_top = 8.0
+offset_right = 184.0
+offset_bottom = 31.0
 text = "a2 ="
 label_settings = ExtResource("8_6uq0m")
 horizontal_alignment = 2
 
+[node name="x-a2" type="RichTextLabel" parent="Control/Formelbereich"]
+layout_mode = 0
+offset_left = 200.0
+offset_top = 32.0
+offset_right = 256.0
+offset_bottom = 64.0
+bbcode_enabled = true
+text = "[font_size=24][color=red][b]x[/b][color=black]² + [/color][/font_size]"
+scroll_active = false
+
+[node name="x-a1" type="RichTextLabel" parent="Control/Formelbereich"]
+layout_mode = 0
+offset_left = 320.0
+offset_top = 32.0
+offset_right = 376.0
+offset_bottom = 64.0
+bbcode_enabled = true
+text = "[font_size=24][color=red][b]x[/b][color=black] + [/color][/font_size]"
+scroll_active = false
+
+[node name="label-a1" type="Label" parent="Control/Formelbereich"]
+layout_mode = 0
+offset_left = 264.0
+offset_top = 8.0
+offset_right = 304.0
+offset_bottom = 31.0
+text = "a1 ="
+label_settings = ExtResource("8_6uq0m")
+horizontal_alignment = 2
+
+[node name="eingabe-a1" type="LineEdit" parent="Control/Formelbereich"]
+layout_mode = 0
+offset_left = 248.0
+offset_top = 32.0
+offset_right = 317.0
+offset_bottom = 63.0
+
+[node name="eingabe-a0" type="LineEdit" parent="Control/Formelbereich"]
+layout_mode = 0
+offset_left = 360.0
+offset_top = 32.0
+offset_right = 429.0
+offset_bottom = 63.0
+
+[node name="label-a0" type="Label" parent="Control/Formelbereich"]
+layout_mode = 0
+offset_left = 376.0
+offset_top = 8.0
+offset_right = 416.0
+offset_bottom = 31.0
+text = "a0 ="
+label_settings = ExtResource("8_6uq0m")
+horizontal_alignment = 2
+
+[node name="formel-y" type="RichTextLabel" parent="Control/Formelbereich"]
+layout_mode = 0
+offset_left = 24.0
+offset_top = 32.0
+offset_right = 128.0
+offset_bottom = 72.0
+bbcode_enabled = true
+text = "[font_size=24]f(x) = [color=darkblue][b]y[/b] = [/color][/font_size]"
+scroll_active = false
+
+[node name="EingabeLabel" type="Label" parent="Control/Formelbereich"]
+visible = false
+layout_mode = 0
+offset_left = 16.0
+offset_top = 8.0
+offset_right = 294.0
+offset_bottom = 31.0
+text = "Eingabebereich:"
+
 [node name="LineEdit4" type="LineEdit" parent="Control"]
 visible = false
 layout_mode = 0
-offset_left = 936.0
-offset_top = -128.0
-offset_right = 1004.56
-offset_bottom = -97.0
+offset_left = 568.0
+offset_top = 8.0
+offset_right = 636.563
+offset_bottom = 39.0
 
 [node name="Label4" type="Label" parent="Control"]
 visible = false
 layout_mode = 0
-offset_left = 888.0
-offset_top = -124.0
-offset_right = 928.0
-offset_bottom = -101.0
+offset_left = 584.0
+offset_top = -16.0
+offset_right = 624.0
+offset_bottom = 7.0
 text = "a3 ="
 label_settings = ExtResource("8_6uq0m")
 horizontal_alignment = 2
 
+[node name="formel-x3" type="RichTextLabel" parent="Control"]
+visible = false
+layout_mode = 0
+offset_left = 640.0
+offset_top = 8.0
+offset_right = 696.0
+offset_bottom = 40.0
+bbcode_enabled = true
+text = "[font_size=24][color=red][b]x[/b][color=black]³ + [/color][/font_size]"
+scroll_active = false
+
 [node name="LineEdit5" type="LineEdit" parent="Control"]
 visible = false
 layout_mode = 0
-offset_left = 936.0
-offset_top = -184.0
-offset_right = 1004.56
-offset_bottom = -153.0
+offset_left = 448.0
+offset_top = 8.0
+offset_right = 516.563
+offset_bottom = 39.0
 
 [node name="Label5" type="Label" parent="Control"]
 visible = false
 layout_mode = 0
-offset_left = 888.0
-offset_top = -180.0
-offset_right = 928.0
-offset_bottom = -157.0
+offset_left = 464.0
+offset_top = -16.0
+offset_right = 504.0
+offset_bottom = 7.0
 text = "a4 ="
 label_settings = ExtResource("8_6uq0m")
 horizontal_alignment = 2
 
+[node name="formel-x4" type="RichTextLabel" parent="Control"]
+visible = false
+layout_mode = 0
+offset_left = 520.0
+offset_top = 8.0
+offset_right = 584.0
+offset_bottom = 40.0
+bbcode_enabled = true
+text = "[font_size=24][color=red][b]x[/b][color=black]⁴ + [/color][/font_size]"
+scroll_active = false
+
 [node name="CheckButton" type="CheckButton" parent="Control"]
 layout_mode = 0
-offset_left = 208.0
-offset_top = -8.0
-offset_right = 252.0
-offset_bottom = 16.0
+offset_left = 72.0
+offset_right = 116.0
+offset_bottom = 24.0
 button_pressed = true
 
 [node name="CheckBoxLabel" type="Label" parent="Control"]
 layout_mode = 0
-offset_left = 256.0
-offset_top = -8.0
-offset_right = 324.0
-offset_bottom = 15.0
+offset_left = 64.0
+offset_top = 24.0
+offset_right = 132.0
+offset_bottom = 47.0
+text = "Hilfslinie"
+
+[node name="CheckButton2" type="CheckButton" parent="Control"]
+visible = false
+layout_mode = 0
+offset_left = 96.0
+offset_top = 24.0
+offset_right = 140.0
+offset_bottom = 48.0
+button_pressed = true
+
+[node name="CheckBoxLabel2" type="Label" parent="Control"]
+visible = false
+layout_mode = 0
+offset_left = 144.0
+offset_top = 24.0
+offset_right = 212.0
+offset_bottom = 47.0
 text = "Hilfslinie"
 
 [node name="Panel" type="Panel" parent="Control"]
 layout_mode = 0
-offset_left = 1080.0
-offset_top = -496.0
-offset_right = 1380.0
-offset_bottom = -246.0
+offset_left = 1192.0
+offset_top = -536.0
+offset_right = 1492.0
+offset_bottom = -286.0
 
 [node name="Aufgabenstellung1" type="RichTextLabel" parent="Control/Panel"]
 layout_mode = 0
@@ -278,10 +365,10 @@ vertical_alignment = 1
 
 [node name="LevelPanel" type="Panel" parent="Control"]
 layout_mode = 0
-offset_left = -70.0
-offset_top = -496.0
-offset_right = 30.0
-offset_bottom = -246.0
+offset_left = -96.0
+offset_top = -536.0
+offset_right = 4.0
+offset_bottom = -392.0
 
 [node name="LevelLabel" type="Label" parent="Control/LevelPanel"]
 layout_mode = 0
@@ -315,16 +402,25 @@ offset_right = 42.0
 offset_bottom = 119.0
 text = "3"
 
-[node name="StartpunktInfo" type="Label" parent="Control"]
+[node name="ButtonLevel4" type="Button" parent="Control/LevelPanel"]
 layout_mode = 0
-offset_left = 160.0
-offset_top = 64.0
-offset_right = 670.0
-offset_bottom = 87.0
-text = "Der Startpunkt des Flugzeuges muss auf dem roten Punkt liegen!!!"
+offset_left = 57.0
+offset_top = 88.0
+offset_right = 87.0
+offset_bottom = 119.0
+text = "4"
+
+[node name="StartpunktInfo" type="Label" parent="Control"]
+visible = false
+layout_mode = 0
+offset_left = 176.0
+offset_top = 80.0
+offset_right = 737.0
+offset_bottom = 103.0
+text = "Der Startpunkt des Flugzeuges muss genau auf dem roten Punkt liegen!!!"
 
 [node name="Camera2D" type="Camera2D" parent="."]
-position = Vector2(576, 328)
+position = Vector2(640, 368)
 
 [node name="Ende" type="Label" parent="."]
 modulate = Color(0.988235, 0, 0, 1)
@@ -339,16 +435,27 @@ Verloren"
 label_settings = SubResource("LabelSettings_tm8iy")
 horizontal_alignment = 1
 
+[node name="StartpunktInfo" type="Label" parent="."]
+offset_left = 832.0
+offset_top = 664.0
+offset_right = 1126.0
+offset_bottom = 713.0
+text = "Kommazahlen mit Punkt schreiben!!!"
+
+[node name="PopupPanel" type="PopupPanel" parent="."]
+
 [connection signal="body_entered" from="Wolke/Area2D2" to="." method="_on_area_2d_wolke_body_entered"]
 [connection signal="body_entered" from="Wolke2/Area2D2" to="." method="_on_area_2d_wolke_body_entered"]
 [connection signal="body_entered" from="Stadt/Area2D" to="." method="_on_area_2d_body_entered"]
 [connection signal="pressed" from="Control/Button" to="." method="_on_button_pressed"]
-[connection signal="text_changed" from="Control/LineEdit" to="." method="_on_line_edit_text_changed"]
-[connection signal="text_changed" from="Control/LineEdit2" to="." method="_on_line_edit_2_text_changed"]
-[connection signal="text_changed" from="Control/LineEdit3" to="." method="_on_line_edit_3_text_changed"]
+[connection signal="text_changed" from="Control/Formelbereich/eingabe-a2" to="." method="_on_line_edit_3_text_changed"]
+[connection signal="text_changed" from="Control/Formelbereich/eingabe-a1" to="." method="_on_line_edit_2_text_changed"]
+[connection signal="text_changed" from="Control/Formelbereich/eingabe-a0" to="." method="_on_line_edit_text_changed"]
 [connection signal="text_changed" from="Control/LineEdit4" to="." method="_on_line_edit_4_text_changed"]
 [connection signal="text_changed" from="Control/LineEdit5" to="." method="_on_line_edit_5_text_changed"]
 [connection signal="toggled" from="Control/CheckButton" to="." method="_on_check_button_toggled"]
+[connection signal="toggled" from="Control/CheckButton2" to="." method="_on_check_button_toggled"]
 [connection signal="pressed" from="Control/LevelPanel/ButtonLevel1" to="." method="_on_button_level_1_pressed"]
 [connection signal="pressed" from="Control/LevelPanel/ButtonLevel2" to="." method="_on_button_level_2_pressed"]
 [connection signal="pressed" from="Control/LevelPanel/ButtonLevel3" to="." method="_on_button_level_3_pressed"]
+[connection signal="pressed" from="Control/LevelPanel/ButtonLevel4" to="." method="_on_button_level_4_pressed"]

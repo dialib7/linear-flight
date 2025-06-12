@@ -6,7 +6,7 @@ var dynamic_font : ResourceImporterDynamicFont
 # Konfiguration
 var origin := Vector2(300, 400)  # Ursprung in Pixeln
 var pixelprox := 100.0           # Pixel pro 1 Einheit
-var range := 10                  # Sichtbarer Bereich in Einheiten
+var range := 20                  # Sichtbarer Bereich in Einheiten
 
 #func _ready():
 #	dynamic_font = ResourceImporterDynamicFont.new()
