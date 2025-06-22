@@ -1,13 +1,13 @@
-[gd_scene load_steps=15 format=3 uid="uid://uky1m0cpk6li"]
+[gd_scene load_steps=16 format=3 uid="uid://uky1m0cpk6li"]
 
 [ext_resource type="Script" uid="uid://c5y650c2vfmq7" path="res://main.gd" id="1_suvky"]
 [ext_resource type="PackedScene" uid="uid://ds5yoalf3w05k" path="res://Szene/Flugzeug.tscn" id="2_8fgnc"]
-[ext_resource type="PackedScene" uid="uid://bpsqtv3xy70vn" path="res://Szene/KoordinatenSystem.tscn" id="4_ivh1u"]
 [ext_resource type="Texture2D" uid="uid://bia5lf4bnspp8" path="res://Bild/airport.png" id="5_6uq0m"]
 [ext_resource type="Script" uid="uid://cuuwn4cntgyb8" path="res://Skript/airport.gd" id="6_qmnke"]
 [ext_resource type="PackedScene" uid="uid://0x1mdyn0y77b" path="res://Szene/Wolke.tscn" id="8_6pdlh"]
 [ext_resource type="LabelSettings" uid="uid://tjhn80euu58f" path="res://coeff.tres" id="8_6uq0m"]
 [ext_resource type="PackedScene" uid="uid://cbqa6xi1vfvuk" path="res://Szene/Stadt.tscn" id="8_b4ujm"]
+[ext_resource type="Texture2D" uid="uid://oehu3du8tpcm" path="res://Bild/Nebelwolke.png" id="8_dixa0"]
 
 [sub_resource type="LabelSettings" id="LabelSettings_6uq0m"]
 font_size = 20
@@ -27,25 +27,26 @@ outline_size = 2
 outline_color = Color(1.44392e-07, 0.255807, 0.255827, 1)
 shadow_size = 2
 
-[sub_resource type="SystemFont" id="SystemFont_ivh1u"]
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_qmnke"]
+border_width_left = 1
+border_width_top = 1
+border_width_right = 1
+border_width_bottom = 1
+
+[sub_resource type="SystemFont" id="SystemFont_qmnke"]
 
 [sub_resource type="LabelSettings" id="LabelSettings_tm8iy"]
 line_spacing = 1.0
-font = SubResource("SystemFont_ivh1u")
+font = SubResource("SystemFont_qmnke")
 font_size = 24
-font_color = Color(1, 0.00784314, 1, 1)
 outline_size = 1
 outline_color = Color(0.00351917, 0.00351917, 0.00351917, 1)
 shadow_color = Color(0.051971, 0.051971, 0.051971, 0)
 
-[node name="Node2D" type="Node2D" node_paths=PackedStringArray("Flugzeug", "KoordinatenSystem")]
+[node name="Node2D" type="Node2D" node_paths=PackedStringArray("Flugzeug")]
 show_behind_parent = true
 script = ExtResource("1_suvky")
 Flugzeug = NodePath("Flugzeug")
-KoordinatenSystem = NodePath("KoordinatenSystem")
-
-[node name="KoordinatenSystem" parent="." instance=ExtResource("4_ivh1u")]
-visible = false
 
 [node name="Ursprung" type="Marker2D" parent="."]
 modulate = Color(0.00184107, 0.00184107, 0.00184107, 1)
@@ -81,7 +82,7 @@ polygon = PackedVector2Array(-464, 256, 480, 256, 480, 96, 104, -176, 24, -208, 
 
 [node name="Airport" type="Sprite2D" parent="."]
 position = Vector2(700, 400)
-scale = Vector2(0.0408938, 0.0589528)
+scale = Vector2(0.041, 0.059)
 texture = ExtResource("5_6uq0m")
 script = ExtResource("6_qmnke")
 
@@ -116,7 +117,7 @@ offset_right = 40.0
 offset_bottom = 8.0
 
 [node name="Fluglinie" type="Line2D" parent="."]
-points = PackedVector2Array(344, 208, 256, 216, 184, 224)
+points = PackedVector2Array(0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0)
 width = 2.0
 default_color = Color(1, 0.00392157, 1, 1)
 
@@ -142,9 +143,9 @@ modulate = Color(1, 1, 0.0705882, 1)
 self_modulate = Color(1, 0.176471, 1, 1)
 top_level = true
 layout_mode = 0
-offset_left = 680.0
+offset_left = 640.0
 offset_top = 536.0
-offset_right = 1192.0
+offset_right = 1152.0
 offset_bottom = 614.0
 text = "Aktuelle Funktion: 
 "
@@ -153,23 +154,23 @@ horizontal_alignment = 1
 
 [node name="Formelbereich" type="Panel" parent="Control"]
 layout_mode = 0
-offset_left = 552.0
+offset_left = 464.0
 offset_top = -24.0
-offset_right = 1016.0
+offset_right = 1040.0
 offset_bottom = 56.0
 
 [node name="eingabe-a2" type="LineEdit" parent="Control/Formelbereich"]
 layout_mode = 0
-offset_left = 128.0
+offset_left = 247.0
 offset_top = 32.0
-offset_right = 196.563
+offset_right = 315.563
 offset_bottom = 63.0
 
 [node name="label-a2" type="Label" parent="Control/Formelbereich"]
 layout_mode = 0
-offset_left = 144.0
+offset_left = 263.0
 offset_top = 8.0
-offset_right = 184.0
+offset_right = 303.0
 offset_bottom = 31.0
 text = "a2 ="
 label_settings = ExtResource("8_6uq0m")
@@ -177,19 +178,19 @@ horizontal_alignment = 2
 
 [node name="x-a2" type="RichTextLabel" parent="Control/Formelbereich"]
 layout_mode = 0
-offset_left = 200.0
+offset_left = 319.0
 offset_top = 32.0
-offset_right = 256.0
+offset_right = 375.0
 offset_bottom = 64.0
 bbcode_enabled = true
-text = "[font_size=24][color=red][b]x[/b][color=black]² + [/color][/font_size]"
+text = "[font_size=24][color=red][b]x²[/b][color=black] + [/color][/font_size]"
 scroll_active = false
 
 [node name="x-a1" type="RichTextLabel" parent="Control/Formelbereich"]
 layout_mode = 0
-offset_left = 320.0
+offset_left = 440.0
 offset_top = 32.0
-offset_right = 376.0
+offset_right = 496.0
 offset_bottom = 64.0
 bbcode_enabled = true
 text = "[font_size=24][color=red][b]x[/b][color=black] + [/color][/font_size]"
@@ -197,9 +198,9 @@ scroll_active = false
 
 [node name="label-a1" type="Label" parent="Control/Formelbereich"]
 layout_mode = 0
-offset_left = 264.0
+offset_left = 384.0
 offset_top = 8.0
-offset_right = 304.0
+offset_right = 424.0
 offset_bottom = 31.0
 text = "a1 ="
 label_settings = ExtResource("8_6uq0m")
@@ -207,23 +208,23 @@ horizontal_alignment = 2
 
 [node name="eingabe-a1" type="LineEdit" parent="Control/Formelbereich"]
 layout_mode = 0
-offset_left = 248.0
+offset_left = 368.0
 offset_top = 32.0
-offset_right = 317.0
+offset_right = 437.0
 offset_bottom = 63.0
 
 [node name="eingabe-a0" type="LineEdit" parent="Control/Formelbereich"]
 layout_mode = 0
-offset_left = 360.0
+offset_left = 480.0
 offset_top = 32.0
-offset_right = 429.0
+offset_right = 549.0
 offset_bottom = 63.0
 
 [node name="label-a0" type="Label" parent="Control/Formelbereich"]
 layout_mode = 0
-offset_left = 376.0
+offset_left = 496.0
 offset_top = 8.0
-offset_right = 416.0
+offset_right = 536.0
 offset_bottom = 31.0
 text = "a0 ="
 label_settings = ExtResource("8_6uq0m")
@@ -240,7 +241,6 @@ text = "[font_size=24]f(x) = [color=darkblue][b]y[/b] = [/color][/font_size]"
 scroll_active = false
 
 [node name="EingabeLabel" type="Label" parent="Control/Formelbereich"]
-visible = false
 layout_mode = 0
 offset_left = 16.0
 offset_top = 8.0
@@ -248,64 +248,31 @@ offset_right = 294.0
 offset_bottom = 31.0
 text = "Eingabebereich:"
 
-[node name="LineEdit4" type="LineEdit" parent="Control"]
-visible = false
+[node name="eingabe-a3" type="LineEdit" parent="Control/Formelbereich"]
 layout_mode = 0
-offset_left = 568.0
-offset_top = 8.0
-offset_right = 636.563
-offset_bottom = 39.0
+offset_left = 127.0
+offset_top = 32.0
+offset_right = 195.563
+offset_bottom = 63.0
 
-[node name="Label4" type="Label" parent="Control"]
-visible = false
+[node name="label-a3" type="Label" parent="Control/Formelbereich"]
 layout_mode = 0
-offset_left = 584.0
-offset_top = -16.0
-offset_right = 624.0
-offset_bottom = 7.0
-text = "a3 ="
+offset_left = 143.0
+offset_top = 8.0
+offset_right = 183.0
+offset_bottom = 31.0
+text = "a2 ="
 label_settings = ExtResource("8_6uq0m")
 horizontal_alignment = 2
 
-[node name="formel-x3" type="RichTextLabel" parent="Control"]
-visible = false
+[node name="x-a3" type="RichTextLabel" parent="Control/Formelbereich"]
 layout_mode = 0
-offset_left = 640.0
-offset_top = 8.0
-offset_right = 696.0
-offset_bottom = 40.0
+offset_left = 199.0
+offset_top = 32.0
+offset_right = 255.0
+offset_bottom = 64.0
 bbcode_enabled = true
-text = "[font_size=24][color=red][b]x[/b][color=black]³ + [/color][/font_size]"
-scroll_active = false
-
-[node name="LineEdit5" type="LineEdit" parent="Control"]
-visible = false
-layout_mode = 0
-offset_left = 448.0
-offset_top = 8.0
-offset_right = 516.563
-offset_bottom = 39.0
-
-[node name="Label5" type="Label" parent="Control"]
-visible = false
-layout_mode = 0
-offset_left = 464.0
-offset_top = -16.0
-offset_right = 504.0
-offset_bottom = 7.0
-text = "a4 ="
-label_settings = ExtResource("8_6uq0m")
-horizontal_alignment = 2
-
-[node name="formel-x4" type="RichTextLabel" parent="Control"]
-visible = false
-layout_mode = 0
-offset_left = 520.0
-offset_top = 8.0
-offset_right = 584.0
-offset_bottom = 40.0
-bbcode_enabled = true
-text = "[font_size=24][color=red][b]x[/b][color=black]⁴ + [/color][/font_size]"
+text = "[font_size=24][color=red][b]x³[/b][color=black] + [/color][/font_size]"
 scroll_active = false
 
 [node name="CheckButton" type="CheckButton" parent="Control"]
@@ -346,21 +313,21 @@ layout_mode = 0
 offset_left = 1192.0
 offset_top = -536.0
 offset_right = 1492.0
-offset_bottom = -286.0
+offset_bottom = -248.0
 
 [node name="Aufgabenstellung1" type="RichTextLabel" parent="Control/Panel"]
 layout_mode = 0
 offset_left = 32.0
 offset_top = 24.0
 offset_right = 272.0
-offset_bottom = 224.0
+offset_bottom = 264.0
 bbcode_enabled = true
 text = "[font_size=20][b]Aufgabenstellung 1:[/b][/font_size]
 [font_size=14]
-Vorgegeben: a0 = 2.0
-Suche den passenden Parameter a1 (Steigung m) einer linearen Funktion mit dem Prototypen:
+Vorgegeben: b = 2.0
+Suche den passenden Parameter a (Steigung) einer linearen Funktion mit dem Prototypen:
 
-[font_size=24]f(x) = a1x + a0[/font_size]"
+[font_size=24]f(x) = ax + b[/font_size]"
 vertical_alignment = 1
 
 [node name="LevelPanel" type="Panel" parent="Control"]
@@ -368,7 +335,7 @@ layout_mode = 0
 offset_left = -96.0
 offset_top = -536.0
 offset_right = 4.0
-offset_bottom = -392.0
+offset_bottom = -344.0
 
 [node name="LevelLabel" type="Label" parent="Control/LevelPanel"]
 layout_mode = 0
@@ -410,6 +377,22 @@ offset_right = 87.0
 offset_bottom = 119.0
 text = "4"
 
+[node name="ButtonLevel5" type="Button" parent="Control/LevelPanel"]
+layout_mode = 0
+offset_left = 12.0
+offset_top = 136.0
+offset_right = 42.0
+offset_bottom = 167.0
+text = "5"
+
+[node name="ButtonLevel6" type="Button" parent="Control/LevelPanel"]
+layout_mode = 0
+offset_left = 57.0
+offset_top = 136.0
+offset_right = 87.0
+offset_bottom = 167.0
+text = "6"
+
 [node name="StartpunktInfo" type="Label" parent="Control"]
 visible = false
 layout_mode = 0
@@ -419,14 +402,24 @@ offset_right = 737.0
 offset_bottom = 103.0
 text = "Der Startpunkt des Flugzeuges muss genau auf dem roten Punkt liegen!!!"
 
+[node name="Link zu WA" type="RichTextLabel" parent="Control"]
+layout_mode = 0
+offset_left = -96.0
+offset_top = 72.0
+offset_right = 128.0
+offset_bottom = 96.0
+theme_override_styles/normal = SubResource("StyleBoxFlat_qmnke")
+bbcode_enabled = true
+text = "[url=https://de.wolframalpha.com/input?i=system+equation+calculator&assumption=%7B%22F%22%2C+%22SolveSystemOf2EquationsCalculator%22%2C+%22equation1%22%7D+-%3E%22a+%2B+b+%3D+0%22&assumption=%22FSelect%22+-%3E+%7B%7B%22SolveSystemOf2EquationsCalculator%22%7D%2C+%22dflt%22%7D&assumption=%7B%22F%22%2C+%22SolveSystemOf2EquationsCalculator%22%2C+%22equation2%22%7D+-%3E%222b+%2B+4b+%3D+8%22&lang=en]Link zum Online-Rechner ...[/url]
+"
+
 [node name="Camera2D" type="Camera2D" parent="."]
 position = Vector2(640, 368)
 
 [node name="Ende" type="Label" parent="."]
-modulate = Color(0.988235, 0, 0, 1)
-offset_left = 752.0
+offset_left = 860.0
 offset_top = 80.0
-offset_right = 873.0
+offset_right = 981.0
 offset_bottom = 202.0
 scale = Vector2(2.58797, 1.73775)
 text = "Du hast 
@@ -444,6 +437,11 @@ text = "Kommazahlen mit Punkt schreiben!!!"
 
 [node name="PopupPanel" type="PopupPanel" parent="."]
 
+[node name="Nebelwolke" type="Sprite2D" parent="."]
+position = Vector2(654.5, 512.688)
+scale = Vector2(0.299051, 0.327532)
+texture = ExtResource("8_dixa0")
+
 [connection signal="body_entered" from="Wolke/Area2D2" to="." method="_on_area_2d_wolke_body_entered"]
 [connection signal="body_entered" from="Wolke2/Area2D2" to="." method="_on_area_2d_wolke_body_entered"]
 [connection signal="body_entered" from="Stadt/Area2D" to="." method="_on_area_2d_body_entered"]
@@ -451,11 +449,13 @@ text = "Kommazahlen mit Punkt schreiben!!!"
 [connection signal="text_changed" from="Control/Formelbereich/eingabe-a2" to="." method="_on_line_edit_3_text_changed"]
 [connection signal="text_changed" from="Control/Formelbereich/eingabe-a1" to="." method="_on_line_edit_2_text_changed"]
 [connection signal="text_changed" from="Control/Formelbereich/eingabe-a0" to="." method="_on_line_edit_text_changed"]
-[connection signal="text_changed" from="Control/LineEdit4" to="." method="_on_line_edit_4_text_changed"]
-[connection signal="text_changed" from="Control/LineEdit5" to="." method="_on_line_edit_5_text_changed"]
+[connection signal="text_changed" from="Control/Formelbereich/eingabe-a3" to="." method="_on_line_edit_4_text_changed"]
 [connection signal="toggled" from="Control/CheckButton" to="." method="_on_check_button_toggled"]
 [connection signal="toggled" from="Control/CheckButton2" to="." method="_on_check_button_toggled"]
 [connection signal="pressed" from="Control/LevelPanel/ButtonLevel1" to="." method="_on_button_level_1_pressed"]
 [connection signal="pressed" from="Control/LevelPanel/ButtonLevel2" to="." method="_on_button_level_2_pressed"]
 [connection signal="pressed" from="Control/LevelPanel/ButtonLevel3" to="." method="_on_button_level_3_pressed"]
 [connection signal="pressed" from="Control/LevelPanel/ButtonLevel4" to="." method="_on_button_level_4_pressed"]
+[connection signal="pressed" from="Control/LevelPanel/ButtonLevel5" to="." method="_on_button_level_5_pressed"]
+[connection signal="pressed" from="Control/LevelPanel/ButtonLevel6" to="." method="_on_button_level_6_pressed"]
+[connection signal="meta_clicked" from="Control/Link zu WA" to="." method="_on_link_zu_wa_meta_clicked"]
